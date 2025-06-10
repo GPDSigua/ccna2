@@ -57,7 +57,7 @@ config t
  do sh ip protocols
 
 ###### give IP address/pri/secondary default GW to S1 and S2:
-@@S1
+##@@S1
 config t
 int e1/0
  no shut
@@ -67,7 +67,7 @@ int e1/0
  ip route 0.0.0.0 0.0.0.0 192.168.1.129 1
  ip route 0.0.0.0 0.0.0.0 192.168.1.130 5
  do sh ip route static
-@@S2
+##@@S2
 config t
 int e1/0
  no shut
@@ -76,11 +76,11 @@ int e1/0
  ip route 0.0.0.0 0.0.0.0 10.2.2.2 1
  ip route 0.0.0.0 0.0.0.0 10.2.2.1 10
  do sh ip route static
-R4
+##R4
 config t
  no router eigrp 100
  Task1: LoadBalacing DHCP Server:
- D1:
+## D1:
 CONFIG T
 ip dhcp excluded-add 10.2.1.1 10.2.1.99
 ip dhcp excluded-add 10.2.1.200 10.2.1.254
@@ -95,7 +95,7 @@ int e1/0
    switchport access vlan 100
    do show vlan brief
 !
-D2:
+##D2:
 CONFIG T
 ip dhcp excluded-add 10.2.1.1 10.2.1.199
 ip dhcp excluded-add 10.2.1.250 10.2.1.254
@@ -110,22 +110,22 @@ int e1/0
    switchport mode access
    switchport access vlan 20
    do show vlan brief
-A1: lipat vlan from v1 to v10
+##A1: lipat vlan from v1 to v10
  config t
 int e0/0
  switchport mode access
  switchport access vlan 10
-A1: creating Floating Default route and Secondary Default Route:
+##A1: creating Floating Default route and Secondary Default Route:
 config t
 ip route 0.0.0.0 0.0.0.0 192.168.1.129 1
 ip route 0.0.0.0 0.0.0.0 192.168.1.130 2
 do sh ip route static
-A2:
+##A2:
 config t
 int e1/0
  switchport mode access
  switchport access vlan 10
-A2: creating primary and backup default route:
+##A2: creating primary and backup default route:
 config t
 ip route 0.0.0.0 0.0.0.0 192.168.1.130 1
 ip route 0.0.0.0 0.0.0.0 192.168.1.129  2
